@@ -289,7 +289,7 @@ const questions = [
   { q: "Do you have a preferred EHR or care management platform already in mind?", why: "Platform choice affects what RPM and APCM workflows are possible, how fast you can credential and go live, and what your RCM vendor can integrate with." },
 ];
 
-export default function App() {
+export default function APCMStrategy() {
   const [section, setSection] = useState("codes");
   const [expandedStack, setExpandedStack] = useState(null);
   const [expandedGtm, setExpandedGtm] = useState(null);
