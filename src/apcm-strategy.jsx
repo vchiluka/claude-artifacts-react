@@ -296,43 +296,44 @@ export default function APCMStrategy() {
   const [expandedCode, setExpandedCode] = useState(null);
 
   const navStyle = (s) => ({
-    padding: "9px 14px",
-    fontSize: 11,
-    fontWeight: 700,
-    letterSpacing: "0.07em",
+    padding: "10px 18px",
+    fontSize: 12,
+    fontWeight: 600,
+    letterSpacing: "0.04em",
     textTransform: "uppercase",
-    background: section === s ? "#1d4ed8" : "transparent",
-    color: section === s ? "#eff6ff" : "#4b7baa",
-    border: "none",
-    borderRadius: 4,
+    background: section === s ? "#1d4ed8" : "#ffffff",
+    color: section === s ? "#ffffff" : "#475569",
+    border: section === s ? "none" : "1px solid #e2e8f0",
+    borderRadius: 8,
     cursor: "pointer",
     fontFamily: "inherit",
-    transition: "all 0.15s",
+    transition: "all 0.2s ease",
     whiteSpace: "nowrap",
+    boxShadow: section === s ? "0 2px 4px rgba(29, 78, 216, 0.3)" : "0 1px 2px rgba(0, 0, 0, 0.05)",
   });
 
   return (
     <div style={{
-      background: "#07090d",
+      background: "#f8fafc",
       minHeight: "100vh",
-      color: "#c4d6e7",
-      fontFamily: "'Fira Code', 'Courier New', monospace",
-      fontSize: 12,
-      padding: "20px 14px 40px",
+      color: "#1e293b",
+      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      fontSize: 13,
+      padding: "24px 16px 48px",
     }}>
       {/* Header */}
-      <div style={{ marginBottom: 24 }}>
-        <div style={{ fontSize: 9, color: "#1e3a52", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 5 }}>
+      <div style={{ marginBottom: 28, padding: "20px 24px", background: "linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)", borderRadius: 12, boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)" }}>
+        <div style={{ fontSize: 10, color: "#93c5fd", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 6 }}>
           Virginia · Maryland · NP Full Practice Authority · House Call Model
         </div>
-        <div style={{ fontSize: 22, color: "#e0f0ff", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: 4 }}>
+        <div style={{ fontSize: 24, color: "#ffffff", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.25, marginBottom: 6 }}>
           APCM Code Stack +<br />Go-To-Market Playbook
         </div>
-        <div style={{ fontSize: 10, color: "#1e3a52" }}>Medicare FFS · Part-Time Autonomous NP · MSO/PC Structure</div>
+        <div style={{ fontSize: 11, color: "#bfdbfe" }}>Medicare FFS · Part-Time Autonomous NP · MSO/PC Structure</div>
       </div>
 
       {/* Navigation */}
-      <div style={{ display: "flex", gap: 4, overflowX: "auto", marginBottom: 24, paddingBottom: 10, borderBottom: "1px solid #0f1d2e" }}>
+      <div style={{ display: "flex", gap: 8, overflowX: "auto", marginBottom: 28, paddingBottom: 16, borderBottom: "2px solid #e2e8f0" }}>
         {[
           { key: "codes", label: "CPT Codes" },
           { key: "stacking", label: "Code Stacking" },
@@ -346,38 +347,39 @@ export default function APCMStrategy() {
       {/* CPT CODES */}
       {section === "codes" && (
         <div>
-          <div style={{ fontSize: 10, color: "#1e3a52", marginBottom: 16, lineHeight: 1.8 }}>
+          <div style={{ fontSize: 13, color: "#64748b", marginBottom: 20, lineHeight: 1.7, padding: "12px 16px", background: "#f1f5f9", borderRadius: 8, borderLeft: "4px solid #1d4ed8" }}>
             All codes billable by an autonomous NP in Virginia and Maryland under Medicare Part B. Both states have full practice authority — no collaborative agreement required. Rates shown are approximate 2024 national non-facility Medicare rates; adjust for locality (NOVA/suburban MD runs ~1.05–1.08 geographic practice cost index).
           </div>
           {cptData.map((cat, ci) => (
-            <div key={ci} style={{ marginBottom: 20 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
-                <span style={{ fontSize: 12, color: "#7eb8d4", fontWeight: 700 }}>{cat.category}</span>
-                <span style={{ fontSize: 9, padding: "2px 7px", borderRadius: 3, background: cat.tagBg, color: cat.tagColor, fontWeight: 700, letterSpacing: "0.06em" }}>{cat.tag}</span>
+            <div key={ci} style={{ marginBottom: 24 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+                <span style={{ fontSize: 14, color: "#1e293b", fontWeight: 700 }}>{cat.category}</span>
+                <span style={{ fontSize: 10, padding: "4px 10px", borderRadius: 20, background: cat.tagColor + "18", color: cat.tagColor, fontWeight: 600, letterSpacing: "0.04em" }}>{cat.tag}</span>
               </div>
               {cat.codes.map((c, i) => (
                 <div
                   key={i}
                   onClick={() => setExpandedCode(expandedCode === `${ci}-${i}` ? null : `${ci}-${i}`)}
                   style={{
-                    background: expandedCode === `${ci}-${i}` ? "#0c1726" : "#090e15",
-                    border: `1px solid ${expandedCode === `${ci}-${i}` ? "#1d4ed8" : "#0f1d2e"}`,
-                    borderRadius: 5,
-                    padding: "10px 12px",
-                    marginBottom: 6,
+                    background: expandedCode === `${ci}-${i}` ? "#ffffff" : "#ffffff",
+                    border: `1px solid ${expandedCode === `${ci}-${i}` ? "#1d4ed8" : "#e2e8f0"}`,
+                    borderRadius: 8,
+                    padding: "14px 16px",
+                    marginBottom: 8,
                     cursor: "pointer",
-                    transition: "all 0.15s",
+                    transition: "all 0.2s ease",
+                    boxShadow: expandedCode === `${ci}-${i}` ? "0 4px 12px rgba(29, 78, 216, 0.15)" : "0 1px 3px rgba(0, 0, 0, 0.05)",
                   }}
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                      <span style={{ color: "#5b9bd5", fontWeight: 700, fontSize: 13, minWidth: 52 }}>{c.code}</span>
-                      <span style={{ color: "#8aafcc", fontSize: 11 }}>{c.desc}</span>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                      <span style={{ color: "#1d4ed8", fontWeight: 700, fontSize: 14, minWidth: 56, fontFamily: "'Fira Code', monospace" }}>{c.code}</span>
+                      <span style={{ color: "#475569", fontSize: 13 }}>{c.desc}</span>
                     </div>
-                    <span style={{ color: "#3fb880", fontWeight: 700, whiteSpace: "nowrap", marginLeft: 8 }}>{c.rate}</span>
+                    <span style={{ color: "#059669", fontWeight: 700, whiteSpace: "nowrap", marginLeft: 12, fontSize: 14 }}>{c.rate}</span>
                   </div>
                   {expandedCode === `${ci}-${i}` && (
-                    <div style={{ marginTop: 10, paddingTop: 10, borderTop: "1px solid #0f1d2e", color: "#4b7baa", fontSize: 11, lineHeight: 1.7 }}>
+                    <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #e2e8f0", color: "#64748b", fontSize: 13, lineHeight: 1.7 }}>
                       {c.notes}
                     </div>
                   )}
@@ -391,7 +393,7 @@ export default function APCMStrategy() {
       {/* CODE STACKING */}
       {section === "stacking" && (
         <div>
-          <div style={{ fontSize: 10, color: "#1e3a52", marginBottom: 16, lineHeight: 1.8 }}>
+          <div style={{ fontSize: 13, color: "#64748b", marginBottom: 20, lineHeight: 1.7, padding: "12px 16px", background: "#f1f5f9", borderRadius: 8, borderLeft: "4px solid #059669" }}>
             Strategic code combinations for maximum revenue per encounter and per patient per month. Tap any scenario to expand.
           </div>
           {stackScenarios.map((s, si) => (
@@ -399,40 +401,41 @@ export default function APCMStrategy() {
               key={si}
               onClick={() => setExpandedStack(expandedStack === si ? null : si)}
               style={{
-                background: expandedStack === si ? "#0c1726" : "#090e15",
-                border: `1px solid ${expandedStack === si ? s.color : "#0f1d2e"}`,
-                borderRadius: 6,
-                padding: "14px",
-                marginBottom: 12,
+                background: "#ffffff",
+                border: `2px solid ${expandedStack === si ? s.color : "#e2e8f0"}`,
+                borderRadius: 10,
+                padding: "18px 20px",
+                marginBottom: 14,
                 cursor: "pointer",
-                transition: "all 0.15s",
+                transition: "all 0.2s ease",
+                boxShadow: expandedStack === si ? `0 4px 12px ${s.color}25` : "0 1px 3px rgba(0, 0, 0, 0.05)",
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                 <div>
-                  <div style={{ color: "#e0f0ff", fontWeight: 700, fontSize: 13, marginBottom: 3 }}>{s.title}</div>
-                  <div style={{ color: "#1e3a52", fontSize: 10, letterSpacing: "0.04em" }}>{s.subtitle}</div>
+                  <div style={{ color: "#1e293b", fontWeight: 700, fontSize: 15, marginBottom: 4 }}>{s.title}</div>
+                  <div style={{ color: "#64748b", fontSize: 12, letterSpacing: "0.02em" }}>{s.subtitle}</div>
                 </div>
-                <div style={{ color: s.color, fontWeight: 700, fontSize: 15, whiteSpace: "nowrap", marginLeft: 10 }}>{s.total}</div>
+                <div style={{ color: s.color, fontWeight: 700, fontSize: 18, whiteSpace: "nowrap", marginLeft: 12 }}>{s.total}</div>
               </div>
               {expandedStack === si && (
-                <div style={{ marginTop: 14 }}>
+                <div style={{ marginTop: 16 }}>
                   {s.codes.map((c, i) => (
-                    <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", borderBottom: "1px solid #0c1420" }}>
-                      <span style={{ color: "#5b9bd5", minWidth: 52, fontWeight: 700 }}>{c.code}</span>
-                      <span style={{ color: "#7a9fb5", flex: 1, paddingRight: 8, fontSize: 11 }}>{c.desc}</span>
-                      <span style={{ color: "#3fb880", whiteSpace: "nowrap" }}>{c.amt}</span>
+                    <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid #f1f5f9" }}>
+                      <span style={{ color: "#1d4ed8", minWidth: 56, fontWeight: 700, fontFamily: "'Fira Code', monospace" }}>{c.code}</span>
+                      <span style={{ color: "#475569", flex: 1, paddingRight: 12, fontSize: 13 }}>{c.desc}</span>
+                      <span style={{ color: "#059669", fontWeight: 600, whiteSpace: "nowrap" }}>{c.amt}</span>
                     </div>
                   ))}
-                  <div style={{ marginTop: 12, padding: "10px", background: s.bg, borderRadius: 4, color: s.color, fontSize: 11, lineHeight: 1.7 }}>
+                  <div style={{ marginTop: 14, padding: "14px 16px", background: s.color + "10", borderRadius: 8, color: "#1e293b", fontSize: 13, lineHeight: 1.7, borderLeft: `4px solid ${s.color}` }}>
                     {s.note}
                   </div>
                 </div>
               )}
             </div>
           ))}
-          <div style={{ marginTop: 16, padding: 12, background: "#090e15", border: "1px solid #0f1d2e", borderRadius: 6 }}>
-            <div style={{ fontSize: 10, color: "#1e3a52", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 }}>Revenue Per Patient — Best Case Annual</div>
+          <div style={{ marginTop: 20, padding: 20, background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: 10, boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)" }}>
+            <div style={{ fontSize: 12, color: "#1d4ed8", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 14, fontWeight: 600 }}>Revenue Per Patient — Best Case Annual</div>
             {[
               { label: "APCM only (complex)", val: "$1,056/yr" },
               { label: "APCM + RPM (compliant)", val: "$2,448/yr" },
@@ -440,12 +443,12 @@ export default function APCMStrategy() {
               { label: "APCM + RPM + cognitive assessment + ACP", val: "$3,200/yr" },
               { label: "Full stack: enrollment yr + all recurring codes", val: "$3,800–$4,200/yr" },
             ].map((r, i) => (
-              <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "5px 0", borderBottom: "1px solid #0a1218" }}>
-                <span style={{ color: "#4b7baa", fontSize: 11 }}>{r.label}</span>
-                <span style={{ color: "#3fb880", fontWeight: 700 }}>{r.val}</span>
+              <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid #f1f5f9" }}>
+                <span style={{ color: "#475569", fontSize: 13 }}>{r.label}</span>
+                <span style={{ color: "#059669", fontWeight: 700, fontSize: 14 }}>{r.val}</span>
               </div>
             ))}
-            <div style={{ marginTop: 10, fontSize: 10, color: "#1e3a52" }}>
+            <div style={{ marginTop: 14, fontSize: 13, color: "#64748b", lineHeight: 1.6 }}>
               At 78 patients with full-stack billing, Year 2 annualized revenue approaches $250K–$300K — materially different from the APCM-only model in the proforma.
             </div>
           </div>
@@ -455,38 +458,39 @@ export default function APCMStrategy() {
       {/* GTM */}
       {section === "gtm" && (
         <div>
-          <div style={{ fontSize: 10, color: "#1e3a52", marginBottom: 16, lineHeight: 1.8 }}>
+          <div style={{ fontSize: 13, color: "#64748b", marginBottom: 20, lineHeight: 1.7, padding: "12px 16px", background: "#f1f5f9", borderRadius: 8, borderLeft: "4px solid #d97706" }}>
             Three-tier GTM prioritized by speed-to-first-patient and cost-to-acquire. House call NPs in NOVA/suburban MD are genuinely rare — lean into scarcity.
           </div>
           {gtmTiers.map((tier, ti) => (
-            <div key={ti} style={{ marginBottom: 24 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-                <div style={{ fontSize: 11, color: tier.color, fontWeight: 700 }}>{tier.tier}</div>
+            <div key={ti} style={{ marginBottom: 28 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+                <div style={{ fontSize: 14, color: tier.color, fontWeight: 700 }}>{tier.tier}</div>
               </div>
-              <div style={{ fontSize: 10, color: "#1e3a52", marginBottom: 10 }}>{tier.timeframe}</div>
+              <div style={{ fontSize: 12, color: "#64748b", marginBottom: 14 }}>{tier.timeframe}</div>
               {tier.tactics.map((t, i) => (
                 <div
                   key={i}
                   onClick={() => setExpandedGtm(expandedGtm === `${ti}-${i}` ? null : `${ti}-${i}`)}
                   style={{
-                    background: expandedGtm === `${ti}-${i}` ? "#0c1726" : "#090e15",
-                    border: `1px solid ${expandedGtm === `${ti}-${i}` ? tier.color + "66" : "#0f1d2e"}`,
-                    borderRadius: 5,
-                    padding: "11px 13px",
-                    marginBottom: 8,
+                    background: "#ffffff",
+                    border: `1px solid ${expandedGtm === `${ti}-${i}` ? tier.color : "#e2e8f0"}`,
+                    borderRadius: 8,
+                    padding: "14px 16px",
+                    marginBottom: 10,
                     cursor: "pointer",
-                    transition: "all 0.15s",
+                    transition: "all 0.2s ease",
+                    boxShadow: expandedGtm === `${ti}-${i}` ? `0 4px 12px ${tier.color}20` : "0 1px 3px rgba(0, 0, 0, 0.05)",
                   }}
                 >
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ color: "#c4d6e7", fontWeight: 700, fontSize: 12 }}>{t.name}</span>
-                    <div style={{ display: "flex", gap: 6 }}>
-                      <span style={{ fontSize: 9, padding: "2px 6px", borderRadius: 3, background: "#0a1520", color: "#4b7baa" }}>Effort: {t.effort}</span>
-                      <span style={{ fontSize: 9, padding: "2px 6px", borderRadius: 3, background: "#0a1520", color: "#3fb880" }}>Yield: {t.yield}</span>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
+                    <span style={{ color: "#1e293b", fontWeight: 600, fontSize: 14 }}>{t.name}</span>
+                    <div style={{ display: "flex", gap: 8 }}>
+                      <span style={{ fontSize: 11, padding: "4px 10px", borderRadius: 20, background: "#f1f5f9", color: "#64748b", fontWeight: 500 }}>Effort: {t.effort}</span>
+                      <span style={{ fontSize: 11, padding: "4px 10px", borderRadius: 20, background: "#ecfdf5", color: "#059669", fontWeight: 500 }}>Yield: {t.yield}</span>
                     </div>
                   </div>
                   {expandedGtm === `${ti}-${i}` && (
-                    <div style={{ marginTop: 10, color: "#4b7baa", fontSize: 11, lineHeight: 1.8, paddingTop: 10, borderTop: "1px solid #0f1d2e" }}>
+                    <div style={{ marginTop: 14, color: "#475569", fontSize: 13, lineHeight: 1.8, paddingTop: 14, borderTop: "1px solid #e2e8f0" }}>
                       {t.detail}
                     </div>
                   )}
@@ -494,8 +498,8 @@ export default function APCMStrategy() {
               ))}
             </div>
           ))}
-          <div style={{ padding: 12, background: "#090e15", border: "1px solid #0f1d2e", borderRadius: 6 }}>
-            <div style={{ fontSize: 10, color: "#1e3a52", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10 }}>GTM Ramp Target — Revised with Full Strategy</div>
+          <div style={{ padding: 20, background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: 10, boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)" }}>
+            <div style={{ fontSize: 12, color: "#d97706", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 16, fontWeight: 600 }}>GTM Ramp Target — Revised with Full Strategy</div>
             {[
               { m: "M1–3", pts: "0", note: "Relationship-building only. In-person visits to SNFs, discharge planners, home health DONs. Zero patient intake." },
               { m: "M4", pts: "10–15", note: "First TCM referrals from hospital discharge planners. 1–2 ALF conversations converting. AWV + APCM stack from day one." },
@@ -503,12 +507,12 @@ export default function APCMStrategy() {
               { m: "M7–9", pts: "50–65", note: "Steady referral flow from 3–4 sources. Word of mouth from families. PCP co-management relationships active." },
               { m: "M10–12", pts: "75–100", note: "NP part-time capacity ceiling. Revenue $12K–$18K/month at full code stack. Hiring second NP becomes viable." },
             ].map((r, i) => (
-              <div key={i} style={{ padding: "8px 0", borderBottom: "1px solid #0a1218" }}>
-                <div style={{ display: "flex", gap: 10, marginBottom: 3 }}>
-                  <span style={{ color: "#5b9bd5", fontWeight: 700, minWidth: 45 }}>{r.m}</span>
-                  <span style={{ color: "#3fb880", fontWeight: 700, minWidth: 55 }}>{r.pts} pts</span>
+              <div key={i} style={{ padding: "12px 0", borderBottom: "1px solid #f1f5f9" }}>
+                <div style={{ display: "flex", gap: 12, marginBottom: 6 }}>
+                  <span style={{ color: "#1d4ed8", fontWeight: 700, minWidth: 50, fontSize: 14 }}>{r.m}</span>
+                  <span style={{ color: "#059669", fontWeight: 700, minWidth: 60, fontSize: 14 }}>{r.pts} pts</span>
                 </div>
-                <div style={{ color: "#2a4a62", fontSize: 10, lineHeight: 1.6, paddingLeft: 55 }}>{r.note}</div>
+                <div style={{ color: "#64748b", fontSize: 13, lineHeight: 1.6, paddingLeft: 62 }}>{r.note}</div>
               </div>
             ))}
           </div>
@@ -518,31 +522,31 @@ export default function APCMStrategy() {
       {/* QUESTIONS */}
       {section === "referral" && (
         <div>
-          <div style={{ fontSize: 13, color: "#e0f0ff", fontWeight: 700, marginBottom: 6 }}>Questions I Need From You</div>
-          <div style={{ fontSize: 10, color: "#1e3a52", marginBottom: 20, lineHeight: 1.7 }}>
+          <div style={{ fontSize: 18, color: "#1e293b", fontWeight: 700, marginBottom: 8 }}>Questions I Need From You</div>
+          <div style={{ fontSize: 13, color: "#64748b", marginBottom: 24, lineHeight: 1.7, padding: "12px 16px", background: "#f1f5f9", borderRadius: 8, borderLeft: "4px solid #7c3aed" }}>
             These seven answers would materially change the GTM prioritization, financial model, and entity structure decisions. Answer any or all.
           </div>
           {questions.map((q, i) => (
-            <div key={i} style={{ background: "#090e15", border: "1px solid #0f1d2e", borderRadius: 6, padding: "14px", marginBottom: 10 }}>
-              <div style={{ display: "flex", gap: 10, marginBottom: 8 }}>
-                <span style={{ color: "#1d4ed8", fontWeight: 700, minWidth: 22, fontSize: 14 }}>Q{i + 1}</span>
-                <span style={{ color: "#c4d6e7", fontWeight: 700, fontSize: 12, lineHeight: 1.5 }}>{q.q}</span>
+            <div key={i} style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: 10, padding: "18px 20px", marginBottom: 12, boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)" }}>
+              <div style={{ display: "flex", gap: 12, marginBottom: 10 }}>
+                <span style={{ color: "#ffffff", background: "#1d4ed8", fontWeight: 700, minWidth: 32, height: 32, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14 }}>Q{i + 1}</span>
+                <span style={{ color: "#1e293b", fontWeight: 600, fontSize: 14, lineHeight: 1.5, flex: 1 }}>{q.q}</span>
               </div>
-              <div style={{ paddingLeft: 32, color: "#2a4a62", fontSize: 10, lineHeight: 1.7 }}>
-                <span style={{ color: "#1e3a52" }}>Why it matters: </span>{q.why}
+              <div style={{ paddingLeft: 44, color: "#64748b", fontSize: 13, lineHeight: 1.7 }}>
+                <span style={{ color: "#1d4ed8", fontWeight: 600 }}>Why it matters: </span>{q.why}
               </div>
             </div>
           ))}
-          <div style={{ marginTop: 20, padding: "12px 14px", background: "#0c1726", border: "1px solid #1d4ed8", borderRadius: 6 }}>
-            <div style={{ fontSize: 10, color: "#1d4ed8", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 }}>One Insight Worth Surfacing Now</div>
-            <div style={{ fontSize: 11, color: "#4b7baa", lineHeight: 1.8 }}>
+          <div style={{ marginTop: 24, padding: "18px 20px", background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: 10 }}>
+            <div style={{ fontSize: 12, color: "#1d4ed8", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10, fontWeight: 600 }}>One Insight Worth Surfacing Now</div>
+            <div style={{ fontSize: 14, color: "#475569", lineHeight: 1.8 }}>
               The ALF preferred provider arrangement is the single highest-leverage move in this GTM. One signed agreement with a 40-bed facility changes your ramp from 10 patients in month 4 to 25–30. Identify two or three target facilities before credentialing is done so the conversation is already warm when you are ready to enroll.
             </div>
           </div>
         </div>
       )}
 
-      <div style={{ marginTop: 28, fontSize: 9, color: "#10202e", lineHeight: 1.8 }}>
+      <div style={{ marginTop: 32, fontSize: 11, color: "#94a3b8", lineHeight: 1.8, padding: "16px", background: "#f8fafc", borderRadius: 8, borderTop: "1px solid #e2e8f0" }}>
         CPT rates approximate 2024 Medicare national non-facility rates. Locality adjustments apply. Billing combinations subject to CMS NCCI edits and LCD coverage determinations. Verify all stacking scenarios with your RCM vendor before submission. Not legal, billing, or financial advice. Federal ethics disclosure obligations apply before any business activity.
       </div>
     </div>
