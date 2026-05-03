@@ -1,3 +1,4 @@
+// React Router configuration for multi-page routing
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
